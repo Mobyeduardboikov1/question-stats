@@ -2,8 +2,8 @@
 
 # Installation steps:
 
-- Run `composer install`
-- Launch docker instances with `docker-compose up`
+- Run `docker run --rm --interactive --tty -v $(pwd):/app composer install`
+- Launch docker instances with `sail up -d` in a detached mode
 - Setup database - `sail php artisan migrate:fresh`
 - Fill test data: 
 - - Run `sail php artisan db:seed --class QuestionSeeder` 
