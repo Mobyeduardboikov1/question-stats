@@ -7,6 +7,9 @@ use App\Models\Question;
 use Illuminate\Support\Facades\DB;
 use App\Contracts\QuestionRepositoryContract;
 
+/**
+ * Data abstraction layer for retrieving
+ */
 class QuestionRepository implements QuestionRepositoryContract
 {
 
@@ -92,25 +95,5 @@ class QuestionRepository implements QuestionRepositoryContract
         }
     
         return $result;
-    }
-    
-    public function submitAnswers($answers)
-    {
-        $data = [];
-
-        foreach ($answers as $answer) {
-            $data[] = [
-                'question_id' => $answer['question_id']
-            ];
-            if ($answer->option_id) {
-                $data['option_id'] = $answer['option_id'];
-            } else {
-                $data['answer_text'] = $answer['answer_text'];
-
-            }
-           
-        }
-
-        Answer::insert($data);
     }
 }
